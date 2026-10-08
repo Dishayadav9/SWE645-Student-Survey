@@ -1,0 +1,15 @@
+// Author: Disha Yadav
+// SWE645 Assignment 2: Initial Jenkins pipeline to verify GitHub integration.
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Verify GitHub Connection') {
+            steps {
+                echo 'Successfully connected Jenkins to GitHub!'
+                echo 'SWE645 Student Survey Pipeline started.'
+            }
+        }
+    }
+}
