@@ -1,0 +1,142 @@
+<!--
+  Author: Disha Yadav
+  Purpose: SWE 645 Assignment 1 Student Survey form for prospective students.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Survey | SWE 645</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark mason-nav">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">SWE 645</a>
+      <div class="ms-auto">
+        <a class="nav-link d-inline-block text-white" href="index.html">Home</a>
+        <a class="nav-link d-inline-block text-white" href="survey.html">Student Survey</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header py-4">
+    <div class="container">
+      <h1 class="fw-bold mb-1">Student Survey</h1>
+      <p class="mb-0">Tell us about your campus visit. Fields marked * are required.</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <form id="studentSurvey" class="survey-card" novalidate>
+      <h2 class="section-title">Contact Information</h2>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="firstName" class="form-label">First Name *</label>
+          <input type="text" class="form-control" id="firstName" name="firstName" required autocomplete="given-name">
+        </div>
+        <div class="col-md-6">
+          <label for="lastName" class="form-label">Last Name *</label>
+          <input type="text" class="form-control" id="lastName" name="lastName" required autocomplete="family-name">
+        </div>
+        <div class="col-12">
+          <label for="street" class="form-label">Street Address *</label>
+          <input type="text" class="form-control" id="street" name="street" required autocomplete="street-address">
+        </div>
+        <div class="col-md-5">
+          <label for="city" class="form-label">City *</label>
+          <input type="text" class="form-control" id="city" name="city" required autocomplete="address-level2">
+        </div>
+        <div class="col-md-3">
+          <label for="state" class="form-label">State *</label>
+          <input type="text" class="form-control" id="state" name="state" maxlength="30" required autocomplete="address-level1">
+        </div>
+        <div class="col-md-4">
+          <label for="zip" class="form-label">ZIP Code *</label>
+          <input type="text" class="form-control" id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}(-[0-9]{4})?" required autocomplete="postal-code">
+          <div class="form-text">Example: 22030 or 22030-4444</div>
+        </div>
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Telephone Number *</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required autocomplete="tel">
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email *</label>
+          <input type="email" class="form-control" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="col-md-6">
+          <label for="surveyDate" class="form-label">Date of Survey *</label>
+          <input type="date" class="form-control" id="surveyDate" name="surveyDate" required>
+        </div>
+      </div>
+
+      <hr class="my-4">
+      <fieldset>
+        <legend class="section-title">What did you like most about the campus?</legend>
+        <p class="text-secondary">Select all that apply.</p>
+        <div class="row g-2">
+          <div class="col-sm-6 col-lg-4"><div class="form-check"><input class="form-check-input campus-like" type="checkbox" id="students" name="likedMost" value="students"><label class="form-check-label" for="students">Students</label></div></div>
+          <div class="col-sm-6 col-lg-4"><div class="form-check"><input class="form-check-input campus-like" type="checkbox" id="location" name="likedMost" value="location"><label class="form-check-label" for="location">Location</label></div></div>
+          <div class="col-sm-6 col-lg-4"><div class="form-check"><input class="form-check-input campus-like" type="checkbox" id="campus" name="likedMost" value="campus"><label class="form-check-label" for="campus">Campus</label></div></div>
+          <div class="col-sm-6 col-lg-4"><div class="form-check"><input class="form-check-input campus-like" type="checkbox" id="atmosphere" name="likedMost" value="atmosphere"><label class="form-check-label" for="atmosphere">Atmosphere</label></div></div>
+          <div class="col-sm-6 col-lg-4"><div class="form-check"><input class="form-check-input campus-like" type="checkbox" id="dormRooms" name="likedMost" value="dorm rooms"><label class="form-check-label" for="dormRooms">Dorm Rooms</label></div></div>
+          <div class="col-sm-6 col-lg-4"><div class="form-check"><input class="form-check-input campus-like" type="checkbox" id="sports" name="likedMost" value="sports"><label class="form-check-label" for="sports">Sports</label></div></div>
+        </div>
+      </fieldset>
+
+      <hr class="my-4">
+      <fieldset>
+        <legend class="section-title">How did you become interested in the university?</legend>
+        <div class="row g-2">
+          <div class="col-sm-6 col-lg-3"><div class="form-check"><input class="form-check-input" type="radio" name="interest" id="friends" value="friends" required><label class="form-check-label" for="friends">Friends</label></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="form-check"><input class="form-check-input" type="radio" name="interest" id="television" value="television"><label class="form-check-label" for="television">Television</label></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="form-check"><input class="form-check-input" type="radio" name="interest" id="internet" value="internet"><label class="form-check-label" for="internet">Internet</label></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="form-check"><input class="form-check-input" type="radio" name="interest" id="other" value="other"><label class="form-check-label" for="other">Other</label></div></div>
+        </div>
+      </fieldset>
+
+      <hr class="my-4">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="recommend" class="form-label section-title">Likelihood of Recommending This School</label>
+          <select class="form-select" id="recommend" name="recommend" required>
+            <option value="" selected disabled>Select an option</option>
+            <option>Very Likely</option>
+            <option>Likely</option>
+            <option>Unlikely</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label for="raffle" class="form-label section-title">Raffle</label>
+          <input type="text" class="form-control" id="raffle" name="raffle" required
+                 placeholder="Example: 5, 12, 27, 31, 44, 50, 61, 72, 83, 99">
+          <div class="form-text">Enter at least 10 comma-separated numbers. Every number must be from 1 through 100.</div>
+          <div id="raffleFeedback" class="invalid-feedback"></div>
+        </div>
+        <div class="col-12">
+          <label for="comments" class="form-label section-title">Additional Comments</label>
+          <textarea class="form-control" id="comments" name="comments" rows="5" placeholder="Share any additional feedback..."></textarea>
+        </div>
+      </div>
+
+      <div id="formMessage" class="alert alert-success mt-4 d-none" role="alert">
+        Thank you. Your survey passed the assignment's client-side validation.
+      </div>
+
+      <div class="mt-4 d-flex gap-2 flex-wrap">
+        <button type="submit" class="btn btn-mason">Submit</button>
+        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+        <a href="index.html" class="btn btn-outline-mason">Back to Homepage</a>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer py-4 text-center">
+    <div class="container">&copy; 2026 Disha Yadav | SWE 645</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

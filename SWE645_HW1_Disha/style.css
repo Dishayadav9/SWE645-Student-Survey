@@ -1,0 +1,112 @@
+/*
+  Author: Disha Yadav
+  Purpose: Shared custom styling for the SWE 645 Assignment 1 homepage and Student Survey.
+*/
+:root {
+  --mason-green: #006633;
+  --mason-dark: #004f27;
+  --mason-gold: #ffcc33;
+  --page-bg: #f4f6f5;
+  --text: #1f2a24;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mason-nav {
+  background: var(--mason-green);
+}
+
+.mason-nav .navbar-brand {
+  color: var(--mason-gold);
+}
+
+.mason-nav .nav-link:hover,
+.mason-nav .nav-link:focus {
+  color: var(--mason-gold) !important;
+}
+
+.hero,
+.page-header {
+  background: linear-gradient(135deg, #ffffff 0%, #eaf4ee 100%);
+  border-bottom: 5px solid var(--mason-gold);
+}
+
+.eyebrow {
+  color: var(--mason-green);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.profile-photo {
+  width: min(280px, 80vw);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 7px solid white;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .16);
+}
+
+.content-card,
+.survey-card {
+  background: white;
+  border-radius: 18px;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .08);
+  border-top: 6px solid var(--mason-green);
+}
+
+.section-title {
+  color: var(--mason-green);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--mason-green);
+  box-shadow: 0 0 0 .2rem rgba(0, 102, 51, .15);
+}
+
+.form-check-input:checked {
+  background-color: var(--mason-green);
+  border-color: var(--mason-green);
+}
+
+.btn-mason {
+  background: var(--mason-green);
+  color: white;
+  border: 2px solid var(--mason-green);
+  font-weight: 700;
+}
+
+.btn-mason:hover,
+.btn-mason:focus {
+  background: var(--mason-dark);
+  color: var(--mason-gold);
+  border-color: var(--mason-dark);
+}
+
+.btn-outline-mason {
+  background: transparent;
+  color: var(--mason-green);
+  border: 2px solid var(--mason-green);
+  font-weight: 700;
+}
+
+.btn-outline-mason:hover,
+.btn-outline-mason:focus {
+  background: var(--mason-green);
+  color: white;
+}
+
+.footer {
+  background: #16231c;
+  color: #e7eee9;
+}

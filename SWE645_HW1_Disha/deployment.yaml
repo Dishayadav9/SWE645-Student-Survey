@@ -1,0 +1,22 @@
+# Author: Disha Yadav
+# SWE645 Assignment 2: Deploys three replicas of the Student Survey website.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swe645-survey
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: swe645-survey
+  template:
+    metadata:
+      labels:
+        app: swe645-survey
+    spec:
+      containers:
+        - name: student-survey
+          image: dyadav4/swe645-student-survey:v1
+          ports:
+            - containerPort: 80
