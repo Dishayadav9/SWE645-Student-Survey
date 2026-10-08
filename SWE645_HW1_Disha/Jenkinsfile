@@ -1,10 +1,17 @@
 
-// Author: Disha Yadav
-// SWE645 Assignment 2 - Jenkins CI/CD Pipeline
+/*
+ * Author: Disha Yadav
+ * SWE645 Assignment 2 - Jenkins CI/CD Pipeline
+ */
 
 pipeline {
     agent {
         label 'swe645-docker'
+    }
+
+    environment {
+        IMAGE_NAME = 'dyadav4/swe645-student-survey'
+        IMAGE_TAG = 'v2'
     }
 
     stages {
@@ -18,7 +25,29 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 dir('SWE645_HW1_Disha') {
-                    sh 'docker build -t dyadav4/swe645-student-survey:v2 .'
+                    sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_TOKEN'
+                    )
+                ]) {
+                    sh '''
+                        set +x
+                        echo "$DOCKER_TOKEN" | docker login \
+                          --username "$DOCKER_USER" \
+                          --password-stdin
+
+                        docker push "$IMAGE_NAME:$IMAGE_TAG"
+                        docker logout
+                    '''
                 }
             }
         }
