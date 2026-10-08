@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'dyadav4/swe645-student-survey'
-        IMAGE_TAG = 'v2'
+        IMAGE_TAG = "v${BUILD_NUMBER}"
     }
 
     stages {
