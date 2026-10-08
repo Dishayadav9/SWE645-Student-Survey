@@ -1,14 +1,25 @@
+
 // Author: Disha Yadav
-// SWE645 Assignment 2: Initial Jenkins pipeline to verify GitHub integration.
+// SWE645 Assignment 2 - Jenkins CI/CD Pipeline
 
 pipeline {
-    agent any
+    agent {
+        label 'swe645-docker'
+    }
 
     stages {
-        stage('Verify GitHub Connection') {
+        stage('Verify Docker') {
             steps {
-                echo 'Successfully connected Jenkins to GitHub!'
-                echo 'SWE645 Student Survey Pipeline started.'
+                sh 'docker --version'
+                sh 'docker info'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('SWE645_HW1_Disha') {
+                    sh 'docker build -t dyadav4/swe645-student-survey:v2 .'
+                }
             }
         }
     }
