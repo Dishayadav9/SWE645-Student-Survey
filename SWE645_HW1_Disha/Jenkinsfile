@@ -1,12 +1,61 @@
-stage('Deploy to Kubernetes') {
-    steps {
-        withEnv(['KUBECONFIG=/home/jenkins/.kube/config']) {
-            sh '''
-                kubectl set image deployment/swe645-survey \
-                  student-survey=$IMAGE_NAME:$IMAGE_TAG
+pipeline {
+    agent {
+        label 'swe645-docker'
+    }
 
-                kubectl rollout status deployment/swe645-survey
-            '''
+    environment {
+        IMAGE_NAME = 'dyadav4/swe645-student-survey'
+        IMAGE_TAG = 'v2'
+    }
+
+    stages {
+        stage('Verify Docker') {
+            steps {
+                sh 'docker --version'
+                sh 'docker info'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('SWE645_HW1_Disha') {
+                    sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_TOKEN'
+                    )
+                ]) {
+                    sh '''
+                        set +x
+                        echo "$DOCKER_TOKEN" | docker login \
+                          --username "$DOCKER_USER" \
+                          --password-stdin
+                        docker push "$IMAGE_NAME:$IMAGE_TAG"
+                        docker logout
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                withEnv(['KUBECONFIG=/home/jenkins/.kube/config']) {
+                    sh '''
+                        kubectl set image deployment/swe645-survey \
+                          student-survey=$IMAGE_NAME:$IMAGE_TAG
+
+                        kubectl rollout status deployment/swe645-survey
+                    '''
+                }
+            }
         }
     }
 }
