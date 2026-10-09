@@ -74,7 +74,7 @@ pipeline {
                         ssh -i "$AWS_SSH_KEY" \
                           -o StrictHostKeyChecking=yes \
                           -o BatchMode=yes \
-                          "$AWS_SSH_USER@54.221.172.38" \
+                          "$AWS_SSH_USER@34.229.242.161" \
                           "sudo k3s kubectl set image deployment/swe645-survey swe645-student-survey=$IMAGE_NAME:$IMAGE_TAG && sudo k3s kubectl rollout status deployment/swe645-survey --timeout=180s"
                     '''
                 }
