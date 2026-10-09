@@ -1,3 +1,4 @@
+
 pipeline {
     agent {
         label 'swe645-docker'
@@ -38,7 +39,9 @@ pipeline {
                         echo "$DOCKER_TOKEN" | docker login \
                           --username "$DOCKER_USER" \
                           --password-stdin
+
                         docker push "$IMAGE_NAME:$IMAGE_TAG"
+
                         docker logout
                     '''
                 }
@@ -53,6 +56,26 @@ pipeline {
                           student-survey=$IMAGE_NAME:$IMAGE_TAG
 
                         kubectl rollout status deployment/swe645-survey
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to AWS Kubernetes') {
+            steps {
+                withCredentials([
+                    sshUserPrivateKey(
+                        credentialsId: 'aws-ec2-ssh',
+                        keyFileVariable: 'AWS_SSH_KEY',
+                        usernameVariable: 'AWS_SSH_USER'
+                    )
+                ]) {
+                    sh '''
+                        ssh -i "$AWS_SSH_KEY" \
+                          -o StrictHostKeyChecking=yes \
+                          -o BatchMode=yes \
+                          "$AWS_SSH_USER@3.85.88.44" \
+                          "sudo k3s kubectl set image deployment/swe645-survey swe645-survey=$IMAGE_NAME:$IMAGE_TAG && sudo k3s kubectl rollout status deployment/swe645-survey --timeout=180s"
                     '''
                 }
             }
